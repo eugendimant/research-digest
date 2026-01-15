@@ -1,0 +1,122 @@
+# ============================================================================
+# EUGEN'S WEEKLY RESEARCH DIGEST - CONFIGURATION
+# ============================================================================
+# Edit this file directly OR use the web interface at your Streamlit app URL
+# ============================================================================
+
+# --- EMAIL SETTINGS ---
+email:
+  recipient: "edimant@sas.upenn.edu"
+  sender_name: "Eugen's Research Digest"
+  
+# --- SCHEDULE ---
+# Frequency options: "daily", "weekly", "biweekly", "monthly"
+schedule:
+  frequency: "weekly"
+  # For weekly: 0=Monday, 6=Sunday
+  day_of_week: 6
+  # Hour in UTC (23 = 6 PM EST, 18 = 1 PM EST)
+  hour_utc: 23
+
+# --- RESEARCH TOPICS ---
+# Primary keywords (highest relevance weight)
+# Secondary keywords (medium weight)
+# Exclude terms (papers with these are filtered out)
+topics:
+  primary:
+    - "behavioral economics"
+    - "experimental economics"
+    - "dishonesty"
+    - "cheating behavior"
+    - "unethical behavior"
+    - "corruption"
+    - "social norms"
+    - "honesty"
+    - "lying"
+    - "deception"
+    
+  secondary:
+    - "nudge"
+    - "nudging"
+    - "decision making"
+    - "moral behavior"
+    - "prosocial behavior"
+    - "cooperation"
+    - "trust game"
+    - "public goods game"
+    - "dictator game"
+    - "ultimatum game"
+    - "field experiment"
+    - "lab experiment"
+    - "randomized controlled trial"
+    - "behavioral intervention"
+    - "incentive design"
+    - "ethical decision"
+    - "norm enforcement"
+    - "peer effects"
+    - "social influence"
+    
+  exclude:
+    - "cryptocurrency"
+    - "bitcoin"
+    - "ethereum"
+    - "blockchain"
+    - "stock prediction"
+    - "deep learning for trading"
+    - "algorithmic trading"
+    - "sports betting"
+
+# --- PAPER SOURCES ---
+# Enable/disable each source
+sources:
+  arxiv:
+    enabled: true
+    categories:
+      - "econ.GN"      # General Economics
+      - "econ.TH"      # Theoretical Economics  
+      - "q-fin.EC"     # Economics
+      - "cs.GT"        # Game Theory
+      - "cs.CY"        # Computers and Society
+      - "cs.HC"        # Human-Computer Interaction
+      
+  openalex:
+    enabled: true
+    # Comprehensive academic database
+    
+  semantic_scholar:
+    enabled: true
+    # AI-powered academic search
+    
+  pubmed:
+    enabled: true
+    # Psychology and behavioral science
+    
+  nber:
+    enabled: true
+    # NBER working papers
+    
+  repec:
+    enabled: true
+    # Economics working papers
+
+# --- FILTERING ---
+filters:
+  # Only include papers from the last N days
+  days_lookback: 7
+  # Minimum relevance score (0.0 - 1.0)
+  min_relevance: 0.20
+  # Maximum papers per digest
+  max_papers: 20
+  # Skip papers already sent in previous digests
+  skip_seen_papers: true
+
+# --- DISPLAY ---
+display:
+  # Show relevance badges
+  show_relevance_badges: true
+  # Group papers by category
+  group_by_category: true
+  # Include AI-generated summaries (requires Gemini API)
+  ai_summaries: true
+  # Include research opportunity suggestions
+  show_opportunities: true
