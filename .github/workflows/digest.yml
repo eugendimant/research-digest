@@ -1,8 +1,11 @@
 name: Eugen's Research Digest
 
 on:
+  # Sunday at 11 PM UTC (6 PM EST)
   schedule:
     - cron: '0 23 * * 0'
+  
+  # Manual trigger
   workflow_dispatch:
     inputs:
       test_email:
@@ -30,9 +33,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
-      - name: Install dependencies
-        run: pip install pyyaml
       
       - name: Run digest
         env:
