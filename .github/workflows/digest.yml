@@ -1,0 +1,73 @@
+name: Eugen's Research Digest
+
+on:
+  schedule:
+    - cron: '0 23 * * 0'
+  workflow_dispatch:
+    inputs:
+      preview_only:
+        description: 'Generate preview only (no email)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  generate-digest:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run digest
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          if [ "${{ inputs.preview_only }}" = "true" ]; then
+            python digest.py --preview
+          else
+            python digest.py
+          fi
+      
+      - name: Commit seen papers
+        if: success() && inputs.preview_only != 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add seen_papers.json || true
+          git diff --staged --quiet || git commit -m "Update seen papers [skip ci]"
+          git push || true
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: digest-${{ github.run_number }}
+          path: |
+            latest_digest.html
+            latest_papers.json
+          retention-days: 30
+```
+
+### Step 3: Run it
+
+Go to **Actions** → **Eugen's Research Digest** → **Run workflow** → **Run workflow**
+
+(No "test email" option anymore - it always fetches real papers)
+
+---
+
+## Verification Guarantee
+
+Every paper in your digest will now show:
+```
+DOI: 10.xxxx/xxxxx ✓ Verified
