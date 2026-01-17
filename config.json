@@ -1,0 +1,60 @@
+{
+  "email": {
+    "recipient": "edimant@sas.upenn.edu",
+    "sender_name": "Eugen's Research Digest"
+  },
+  "schedule": {
+    "frequency": "weekly",
+    "day_of_week": 6,
+    "hour_utc": 23
+  },
+  "topics": {
+    "primary": [
+      "behavioral economics",
+      "experimental economics",
+      "dishonesty",
+      "cheating behavior",
+      "unethical behavior",
+      "corruption",
+      "social norms",
+      "honesty",
+      "deception",
+      "moral behavior"
+    ],
+    "secondary": [
+      "nudge",
+      "decision making",
+      "prosocial behavior",
+      "cooperation",
+      "trust game",
+      "public goods game",
+      "field experiment",
+      "lab experiment",
+      "randomized controlled trial",
+      "behavioral intervention",
+      "norm enforcement",
+      "peer effects"
+    ],
+    "exclude": [
+      "cryptocurrency",
+      "bitcoin",
+      "ethereum",
+      "blockchain",
+      "stock prediction",
+      "algorithmic trading",
+      "sports betting"
+    ]
+  },
+  "sources": {
+    "crossref": true,
+    "openalex": true,
+    "semantic_scholar": true,
+    "pubmed": true
+  },
+  "filters": {
+    "days_lookback": 14,
+    "min_relevance": 0.12,
+    "max_papers": 20,
+    "skip_seen_papers": true
+  }
+}
